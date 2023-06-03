@@ -24,7 +24,7 @@ This is the first assignment for OpenMMLab, and the assignment description is as
 ## Processing  
 自顶向下的方法：先使用目标检测模型检测出物体的位置，再分别对每个框中的物体进行关键点检测，这种方法精度相对较高，但也比较耗时。    
 本次使用的是RTMDet和RTMPose算法，首先在**mmdetection**中创建**data文件夹**将数据，标签和模型配置文件放**data文件夹**中，训练时会自动创建**work_dir文件夹**，训练过程中日志文件和模型训练权重都放在了这个文件夹中。  
-对于**mmpose**也是一样的流程。  
+除了模型配置文件不一样，其余对于**mmpose**也是一样的流程。  
 #### train:
 ~~~
 python tools/train.py data/rtmdet_tiny_ear.py 
