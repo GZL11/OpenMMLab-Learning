@@ -33,4 +33,9 @@ python tools/train.py data/rtmdet_tiny_ear.py
 python tools/test.py data/rtmdet_tiny_ear.py work_dirs/rtmdet_tiny_ear/best_coco_bbox_mAP_epoch_198.pth 
 ~~~
 测试结果如下：  
-[图片](/home/duxing/图片/test.png "测试集结果")
+![图片](/home/duxing/图片/test.png "测试集结果")
+#### 权重轻量化（不做模型压缩，只去掉无用信息）：  
+~~~
+python tools/model_converters/publish_model.py work_dirs/rtmdet_tiny_ear/best_coco_bbox_mAP_epoch_198.pth checkpoint/weight_name
+~~~
+
