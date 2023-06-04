@@ -33,10 +33,15 @@ python tools/train.py data/rtmdet_tiny_ear.py
 ~~~
 python tools/test.py data/rtmdet_tiny_ear.py work_dirs/rtmdet_tiny_ear/best_coco_bbox_mAP_epoch_198.pth 
 ~~~
-测试结果如下：  
-![图片](/home/duxing/图片/test.png "测试集结果")
 #### 权重轻量化（不做模型压缩，只去掉无用信息）：  
 ~~~
 python tools/model_converters/publish_model.py work_dirs/rtmdet_tiny_ear/best_coco_bbox_mAP_epoch_198.pth checkpoint/weight_name
 ~~~
-
+#### 单张图片可视化，其中，先分别加载det和pose的config文件和权重，--input 测试图片 --output-root 输出位置.etc：   
+~~~
+python demo/topdown_demo_with_mmdet.py data/rtmdet_tiny_ear.py checkpoint/best_coco_bbox_mAP_epoch_198.pth data/rtmpose-s-ear.py checkpoint/rtmpose_weight-72000728_20230604.pth --input data/Ear210_Keypoint_Dataset_coco/images/DSC_5587.jpg --output-root outputs/G2_Fasterrcnn-RTMPose/ --device cuda:0 --bbox-thr 0.5 --kpt-thr 0.5 --nms-thr 0.3 --radius 36 --thickness 30 --draw-bbox --draw-heatmap --show-kpt-idx
+~~~
+#### 视频检测：  
+~~~
+python demo/topdown_demo_with_mmdet.py data/rtmdet_tiny_ear.py checkpoint/best_coco_bbox_mAP_epoch_198.pth data/rtmpose-s-ear.py checkpoint/rtmpose_weight-72000728_20230604.pth --input data/1578889869.mp4 --output-root outputs/G2_Fasterrcnn-RTMPose/ --device cuda:0 --bbox-thr 0.5 --kpt-thr 0.5 --nms-thr 0.3 --radius 10 --thickness 6 --draw-bbox --draw-heatmap --show-kpt-idx
+~~~
